@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import os
 import calendar
 import time
@@ -27,9 +27,12 @@ def upload_image():
     fileName = str(calendar.timegm(time.gmtime())) + image_file.filename
     image_file.save(os.path.join('./files', fileName))
     solutions = predict.predictPool(fileName)
-    print(solutions)
-
-    return 'Image uploaded successfully', 201
+    data = {
+        "success": True,
+        "code": 200,
+        "data": solutions
+    }
+    return jsonify(data)
 
 
 if __name__ == '__main__':
