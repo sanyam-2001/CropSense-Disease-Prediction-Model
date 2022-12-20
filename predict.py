@@ -3,13 +3,15 @@ import cv2
 import numpy as np
 import json
 
+modelMNv2_224 = keras.models.load_model('./models/MNv2_224.h5')
+modelMNv2_256 = keras.models.load_model('./models/MNv2_256.h5')
+
 
 def predictMNv2_224(path):
-    model = keras.models.load_model('./models/MNv2_224.h5')
     img = cv2.imread(path)
     img = cv2.resize(img, (224, 224))
     img = img.reshape(1, 224, 224, 3)
-    predict = model.predict(img)
+    predict = modelMNv2_224.predict(img)
     idx = np.argmax(predict)
     f = open('./categories.json')
     data = json.load(f)
@@ -20,11 +22,10 @@ def predictMNv2_224(path):
 
 
 def predictMNv2_256(path):
-    model = keras.models.load_model('./models/MNv2_256.h5')
     img = cv2.imread(path)
     img = cv2.resize(img, (256, 256))
     img = img.reshape(1, 256, 256, 3)
-    predict = model.predict(img)
+    predict = modelMNv2_256.predict(img)
     idx = np.argmax(predict)
     f = open('./categories.json')
     data = json.load(f)
