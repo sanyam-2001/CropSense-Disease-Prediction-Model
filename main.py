@@ -25,7 +25,7 @@ def create_item():
 def upload_image():
     image_file = request.files['image']
     if image_file == None:
-        return 'No image file provided', 400
+        return 'No image file provided', 410
     fileName = str(calendar.timegm(time.gmtime())) + image_file.filename
     image_file.save(os.path.join('./files', fileName))
     solutions = predict.predictPool(fileName)
