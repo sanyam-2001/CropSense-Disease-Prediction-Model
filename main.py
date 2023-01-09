@@ -6,6 +6,7 @@ import predict
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
@@ -33,7 +34,9 @@ def upload_image():
         "code": 200,
         "data": solutions
     }
-    return jsonify(data)
+    response = jsonify(data)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == '__main__':
