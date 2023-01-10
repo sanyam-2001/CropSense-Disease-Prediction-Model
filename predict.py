@@ -17,7 +17,7 @@ def predictMNv2_224(path):
     data = json.load(f)
     for key, value in data.items():
         if value == idx:
-            ans = key
+            ans = [predict[0][idx], key]
     return ans
 
 
@@ -31,7 +31,7 @@ def predictMNv2_256(path):
     data = json.load(f)
     for key, value in data.items():
         if value == idx:
-            ans = key
+            ans = [predict[0][idx], key]
     return ans
 
 
