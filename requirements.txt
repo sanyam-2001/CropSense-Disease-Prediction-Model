@@ -3,3 +3,4 @@ opencv-python
 tensorflow
 flask
 flask_cors
+Pillow
