@@ -29,11 +29,10 @@ def upload_image():
     fileName = str(calendar.timegm(time.gmtime())) + image_file.filename
     image_file.save(os.path.join('./files', fileName))
     solutions = predict.predictPool(fileName)
-    solutions.sort(reverse=True)
     data = {
         "success": True,
         "code": 200,
-        "data": solutions[0][1]
+        "data": solutions[0]
     }
     response = jsonify(data)
     response.headers.add("Access-Control-Allow-Origin", "*")
